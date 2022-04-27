@@ -11,9 +11,9 @@ namespace OrderManagement.Infrastructure.IServices;
 public interface ICustomerService
 {
     Task<List<CustomerDto>> GetAll();
-    Task Add(CustomerDto customer);
-    void Delete(CustomerDto customer);
-    void Update(CustomerDto customer);
+    Task Add(CustomerDto customerDto);
+    void Delete(CustomerDto customerDto);
+    void Update(CustomerDto customerDto);
     Task<List<CustomerDto>> Get(Expression<Func<CustomerOrderDto, bool>> filter);
     Task<int> TotalCount();
 }

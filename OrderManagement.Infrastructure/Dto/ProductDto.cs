@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace OrderManagement.Infrastructure.Dto;
 
-public class CustomerOrderDto
+public class ProductDto
 {
     public Guid Id { get; set; }
     public string Barcode { get; set; }

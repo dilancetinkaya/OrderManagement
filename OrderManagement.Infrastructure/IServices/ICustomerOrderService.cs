@@ -12,9 +12,9 @@ namespace OrderManagement.Infrastructure.IServices;
     {
     Task<List<CustomerOrderDto>> GetAll();
     
-    Task Add(CustomerOrderDto customerOrder);
-    void Delete(CustomerOrderDto customerOrder);
-    void Update(CustomerOrderDto customerOrder);
+    Task Add(CustomerOrderDto customerOrderDto);
+    void Delete(CustomerOrderDto customerOrderDto);
+    void Update(CustomerOrderDto customerOrderDto);
     Task<List<CustomerOrderDto>> Get(Expression<Func<CustomerOrderDto, bool>> filter);
     Task<int> TotalCount();
 }
