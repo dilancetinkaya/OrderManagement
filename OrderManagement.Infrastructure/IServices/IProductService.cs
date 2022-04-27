@@ -10,11 +10,11 @@ namespace OrderManagement.Infrastructure.IServices;
 
     public interface IProductService
     {
-    Task<List<CustomerOrderDto>> GetAll();
-    Task Add(CustomerOrderDto productDto);
-    void Delete(CustomerOrderDto productDto);
-    void Update(CustomerOrderDto productDto);
-    Task<List<CustomerOrderDto>> Get(Expression<Func<CustomerOrderDto, bool>> filter);
+    Task<List<ProductDto>> GetAll();
+    Task Add(ProductDto productDto);
+    void Delete(ProductDto productDto);
+    void Update(ProductDto productDto);
+    Task<List<ProductDto>> Get(Expression<Func<ProductDto, bool>> filter);
     Task<int> TotalCount();
 
 
