@@ -1,4 +1,4 @@
-﻿using OrderManagement.Core.Entities;
+﻿using OrderManagement.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,12 +7,8 @@ using System.Threading.Tasks;
 
 namespace OrderManagement.Core.IRepositories;
 
-public interface IProductRepository
+public interface IProductRepository:IRepository<Product>
 {
-    public List<Product> GetProduct();
-    public Product GetProductById(Guid id);
-    public void CreateProduct(Product product);
-    public void UpdateProduct(Product product);
-    public void DeleteProduct(Guid id);
+    
 }
 
