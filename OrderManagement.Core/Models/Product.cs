@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OrderManagement.Core.Entities;
+namespace OrderManagement.Core.Models;
 
 public class Product
 {

@@ -1,4 +1,4 @@
-﻿using OrderManagement.Core.Entities;
+﻿using OrderManagement.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,12 +7,8 @@ using System.Threading.Tasks;
 
 namespace OrderManagement.Core.IRepositories;
 
-public interface ICustomerRepository
+public interface ICustomerRepository:IRepository<Customer>
 {
-    public List<Customer> GetCustomert();
-    public Customer GetCustomerById(Guid id);
-    public void CreateCustomer(Customer customer);
-    public void UpdateCustomer(Customer customer);
-    public void DeleteCustomer(Guid id);
+   
 }
 
