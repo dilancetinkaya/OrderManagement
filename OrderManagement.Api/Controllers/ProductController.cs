@@ -31,13 +31,13 @@ public class ProductController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<IActionResult> AddProduct(ProductDto product)
+    public async Task<IActionResult> AddProduct(CreateProductDto product)
     {
         await _productService.Add(product);
         return Ok();
     }
     [HttpPut("{id}")]
-    public IActionResult UpdateProduct(ProductDto product, Guid id)
+    public IActionResult UpdateProduct(UpdateProductDto product, Guid id)
     {
 
         _productService.Update(product, id);

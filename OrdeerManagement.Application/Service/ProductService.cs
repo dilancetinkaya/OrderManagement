@@ -16,7 +16,7 @@ public class ProductService : IProductService
         _productRepository = productRepository;
         _mapper = mapper;
     }
-    public async Task Add(ProductDto productDto)
+    public async Task Add(CreateProductDto productDto)
     {
         var product = _mapper.Map<Product>(productDto);
         await _productRepository.Add(product);
@@ -42,12 +42,9 @@ public class ProductService : IProductService
         return productsDto;
     }
 
-    public async Task<int> TotalCount()
-    {
-        return await _productRepository.TotalCount();
-    }
 
-    public void Update(ProductDto productDto,Guid id)
+
+    public void Update(UpdateProductDto productDto,Guid id)
     {
         var updatedProduct = _mapper.Map<Product>(productDto);
         updatedProduct.Id = id;

@@ -9,8 +9,7 @@ public interface IRepository<TEntity> where TEntity : class
         void Update(TEntity entity);
         Task<List<TEntity>> GetAll();
         Task<List<TEntity>> Get(Expression<Func<TEntity, bool>> filter);
-
-        Task<int> TotalCount();
+     
 
     }
 

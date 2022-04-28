@@ -6,10 +6,10 @@ namespace OrderManagement.Infrastructure.Interfaces;
 public interface ICustomerService
 {
     Task<List<CustomerDto>> GetAll();
-    Task Add(CustomerDto customerDto);
+    Task Add(CreateCustomerDto customerDto);
     void Delete(CustomerDto customerDto);
-    void Update(CustomerDto customerDto,string id);
+    void Update(UpdateCustomerDto customerDto,string id);
     Task<List<CustomerDto>> Get(Expression<Func<CustomerOrderDto, bool>> filter);
-    Task<int> TotalCount();
+   
 }
 

@@ -12,7 +12,7 @@ using OrderManagement.Infrastructure.Context;
 namespace OrderManagement.Infrastructure.Migrations
 {
     [DbContext(typeof(OrderDbContext))]
-    [Migration("20220428153638_OrderManagement")]
+    [Migration("20220428161229_OrderManagement")]
     partial class OrderManagement
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

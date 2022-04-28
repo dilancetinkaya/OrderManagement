@@ -31,13 +31,13 @@ public class CustomerOrderController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<IActionResult> AddOrder(CustomerOrderDto order)
+    public async Task<IActionResult> AddOrder(CreateCustomerOrderDto order)
     {
         await _customerOrderService.Add(order);
         return Ok();
     }
     [HttpPut("{id}")]
-    public IActionResult UpdateOrder(CustomerOrderDto order, Guid id)
+    public IActionResult UpdateOrder(UpdateCustomerOrderDto order, Guid id)
     {
 
         _customerOrderService.Update(order, id);
@@ -51,7 +51,32 @@ public class CustomerOrderController : ControllerBase
         _customerOrderService.Delete(order);
         return Ok();
     }
+    public IActionResult AddProduct(ProductDto id, ProductDto price, ProductDto quantity)
+    {
+        //customer id keyi ile bir collection olcak 
 
-    //urun ekle,güncelle ,adet ekle
+
+    }
+    public IActionResult AddDelete(ProductDto id)
+    {
+        //ürünü tamamenn çıkarma 10 tane varsa 10 da
+        //session
+    }
+    public IActionResult UpdatePrice(ProductDto id,ProductDto newprice)
+    {
+       //adet değiştirme
+       //varsa yeni adeti yaz yoksa bir şey yaoma
+    }
+
+    //sipariş verme kısmında ürünü ekle çıkar yaptım adet değiştirdim diğer enpointlerden,
+    //adres ve isim girişi default dan başka ad ve adresi gireceği bir endpoimt
+    //order da name adres alanaına setle
+    //adresi güncelle enpointi eğer varsa kaydı o adresi bul product,name adres geldi
+    //ürünler var addres var siparişi tamamla enpointi olucak customer id alıcaz session da tuttuğumuz
+    //product koleksiyonu bulucaz order nesnesinde order ıtemlere eşitlicek, orderimn içine tuttuğu name
+    //yaz ve siparişi yazıcaz ü
+    //hazır olanı databae yaz
+
+    
 }
 
