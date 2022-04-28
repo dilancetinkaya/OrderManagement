@@ -1,5 +1,5 @@
 ﻿
-using OrderManagement.Core.IRepositories;
+using OrderManagement.Core.Interfaces;
 using OrderManagement.Core.Models;
 using OrderManagement.Infrastructure.Context;
 

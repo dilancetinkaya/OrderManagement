@@ -1,12 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using OrderManagement.Core.IRepositories;
+using OrderManagement.Core.Interfaces;
 using OrderManagement.Infrastructure.Context;
 using System.Linq.Expressions;
 
 namespace OrderManagement.Infrastructure.Repositories;
 public abstract class Repository<TEntity> : IRepository<TEntity> where TEntity : class
 {
-    OrderDbContext _context;
+    private readonly OrderDbContext _context;
     private DbSet<TEntity> _entity;
     public Repository(OrderDbContext context)
     {
