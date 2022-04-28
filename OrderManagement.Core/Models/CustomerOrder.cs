@@ -10,13 +10,20 @@ namespace OrderManagement.Core.Models;
 public class CustomerOrder
 {
     public Guid Id { get; set; }
-    public Guid ProductId { get; set; }
-    public Guid CustomerId { get; set; }
-    [ForeignKey("ProductId")]
-    public virtual List<Product> Products { get; set; }
-    [ForeignKey("CustomerId")]
-    public virtual Customer Customer { get; set; }
+    public virtual Customer Customer { get; set; }//siparisi veren
+    public DateTime CreatedAt { get; set; }
+    public int TotalPrice { get; set; }
+    public virtual ICollection<OrderItem> OrderItems { get; set; }
+    public string Name { get; set; }//gönderilecegi kisi
+    public string Address { get; set; }//gönderilen adres
 
+}
 
+public class OrderItem
+{
+    public Guid Id { get; set; }
+    public virtual CustomerOrder Order { get; set; }
+    public virtual Product Product { get; set; }
+    public int Quantity { get; set; }
 }
 
