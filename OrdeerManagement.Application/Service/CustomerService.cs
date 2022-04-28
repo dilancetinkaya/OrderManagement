@@ -34,7 +34,7 @@ public class CustomerService : ICustomerService
     public async Task<List<CustomerDto>> Get(Expression<Func<CustomerOrderDto, bool>> filter)
     {
         var dtoFilter = _mapper.Map<Expression<Func<Customer, bool>>>(filter);
-        var result = await _customerRepository.Get(dtoFilter);
+        var result = await _customerRepository.GetManyAsync(dtoFilter);
         return _mapper.Map<List<CustomerDto>>(result);
     }
 

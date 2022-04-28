@@ -8,7 +8,8 @@ public interface IRepository<TEntity> where TEntity : class
         void Delete(TEntity entity);
         void Update(TEntity entity);
         Task<List<TEntity>> GetAll();
-        Task<List<TEntity>> Get(Expression<Func<TEntity, bool>> filter);
+        Task<List<TEntity>> GetManyAsync(Expression<Func<TEntity, bool>> filter);
+        Task<TEntity> GetAsync(Expression<Func<TEntity, bool>> filter);
      
 
     }

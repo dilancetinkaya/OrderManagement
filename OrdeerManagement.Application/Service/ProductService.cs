@@ -31,7 +31,7 @@ public class ProductService : IProductService
     public async Task<List<ProductDto>> Get(Expression<Func<ProductDto, bool>> filter)
     {
         var dtoFilter = _mapper.Map<Expression<Func<Product, bool>>>(filter);
-        var result = await _productRepository.Get(dtoFilter);
+        var result = await _productRepository.GetManyAsync(dtoFilter);
         return _mapper.Map<List<ProductDto>>(result);
     }
 
