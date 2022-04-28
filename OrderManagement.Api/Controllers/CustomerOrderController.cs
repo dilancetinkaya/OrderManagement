@@ -36,15 +36,7 @@ public class CustomerOrderController : ControllerBase
         await _customerOrderService.Add(order);
         return Ok();
     }
-    [HttpPut("{id}")]
-    public IActionResult UpdateOrder(UpdateCustomerOrderDto order, Guid id)
-    {
-
-        _customerOrderService.Update(order, id);
-        return Ok();
-
-
-    }
+   
     [HttpDelete("{id}")]
     public IActionResult DeleteOrder(CustomerOrderDto order)
     {

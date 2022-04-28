@@ -25,7 +25,7 @@ public abstract class Repository<TEntity> : IRepository<TEntity> where TEntity :
         _entity.Remove(entity);
     }
 
-    public async Task<List<TEntity>> Get(Expression<Func<TEntity, bool>> filter)
+    public async Task<List<TEntity>> GetManyAsync(Expression<Func<TEntity, bool>> filter)
     {
         return await _entity.Where(filter).ToListAsync();
     }
@@ -40,6 +40,11 @@ public abstract class Repository<TEntity> : IRepository<TEntity> where TEntity :
     {
         _entity.Update(entity);
 
+    }
+
+    public async Task<TEntity> GetAsync(Expression<Func<TEntity, bool>> filter)
+    {
+        return await _entity.Where(filter).FirstOrDefaultAsync();
     }
 }
 

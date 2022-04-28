@@ -23,16 +23,28 @@ public class CustomerOrderService : ICustomerOrderService
         await _customerOrderRepository.Add(customerOrder);
     }
 
+    public async Task AddOrderItem(Guid customerOrderId, CreateOrderItemDto orderItem)
+    {
+       await _customerOrderRepository.GetManyAsync(x => x.Id == customerOrderId);
+    }
+
     public void Delete(CustomerOrderDto customerOrderDto)
     {
         var deletedOrder = _mapper.Map<CustomerOrder>(customerOrderDto);
         _customerOrderRepository.Delete(deletedOrder);
     }
 
+    public async Task DeletedOrderItem(Guid customerOrderId, Guid productId)
+    {
+        var order=await _customerOrderRepository.GetAsync(x => x.Id == customerOrderId);
+        order.OrderItems.FirstOrDefault(x => x.Product.Id == productId);
+        _customerOrderRepository.Delete(order);
+    }
+
     public async Task<List<CustomerOrderDto>> Get(Expression<Func<CustomerOrderDto, bool>> filter)
     {
         var dtoFilter = _mapper.Map<Expression<Func<CustomerOrder, bool>>>(filter);
-        var result = await _customerOrderRepository.Get(dtoFilter);
+        var result = await _customerOrderRepository.GetManyAsync(dtoFilter);
         return _mapper.Map<List<CustomerOrderDto>>(result);
     }
 
@@ -43,15 +55,19 @@ public class CustomerOrderService : ICustomerOrderService
         return ordersDto;
     }
 
-
-
-    public void Update(UpdateCustomerOrderDto customerOrderDto,Guid id)
+    public async Task UpdateCustomerOrderAddredd(Guid customerOrderId, string address)
     {
+        var order = await _customerOrderRepository.GetAsync(x => x.Id == customerOrderId);
+        order.Address = address;
+        _customerOrderRepository.Update(order);
+    }
 
-        var updateOrder = _mapper.Map<CustomerOrder>(customerOrderDto);
-        updateOrder.Id = id;
-        _customerOrderRepository.Update(updateOrder);
-        
+    public async Task UpdateOrderItem(Guid customerOrderId, UpdateOrderItemDto orderItem)
+    {
+        var order = await _customerOrderRepository.GetAsync(x => x.Id == customerOrderId);
+        order.OrderItems.FirstOrDefault(x => x.Product.Id == orderItem.ProductId).Quantity = orderItem.Quantity;
+        _customerOrderRepository.Update(order);
+
     }
 }
 

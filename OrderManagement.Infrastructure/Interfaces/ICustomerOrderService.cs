@@ -9,7 +9,10 @@ public interface ICustomerOrderService
     
     Task Add(CreateCustomerOrderDto customerOrderDto);
     void Delete(CustomerOrderDto customerOrderDto);
-    void Update(UpdateCustomerOrderDto customerOrderDto, Guid id);
+    Task UpdateOrderItem(Guid customerOrderId, UpdateOrderItemDto orderItem);
+    Task UpdateCustomerOrderAddredd(Guid customerOrderId, string address);
+    Task DeletedOrderItem(Guid customerOrderId, Guid productId);
+    Task AddOrderItem(Guid customerOrderId,CreateOrderItemDto orderItem);
     Task<List<CustomerOrderDto>> Get(Expression<Func<CustomerOrderDto, bool>> filter);
    
 }

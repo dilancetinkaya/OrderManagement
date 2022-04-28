@@ -2,12 +2,12 @@
 
 public class CreateCustomerOrderDto
 {
-    public Guid CustomerId { get; set; }//siparisi veren
+    public Guid CustomerId { get; set; }
     public DateTime CreatedAt { get; set; }
     public int TotalPrice { get; set; }
-    //public virtual ICollection<OrderItemDto> OrderItems { get; set; }
-    public string Name { get; set; }//gönderilecegi kisi
-    public string Address { get; set; }//gönderilen adres
+    public  List<OrderItemDto> OrderItems { get; set; }
+    public string Name { get; set; }
+    public string Address { get; set; }
 
 }
 
