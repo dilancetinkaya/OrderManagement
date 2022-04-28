@@ -17,7 +17,7 @@ public class CustomerOrderService : ICustomerOrderService
         _mapper = mapper;
     }
 
-    public async Task Add(CustomerOrderDto customerOrderDto)
+    public async Task Add(CreateCustomerOrderDto customerOrderDto)
     {
         var customerOrder = _mapper.Map<CustomerOrder>(customerOrderDto);
         await _customerOrderRepository.Add(customerOrder);
@@ -43,12 +43,9 @@ public class CustomerOrderService : ICustomerOrderService
         return ordersDto;
     }
 
-    public async Task<int> TotalCount()
-    {
-        return await _customerOrderRepository.TotalCount();
-    }
 
-    public void Update(CustomerOrderDto customerOrderDto,Guid id)
+
+    public void Update(UpdateCustomerOrderDto customerOrderDto,Guid id)
     {
 
         var updateOrder = _mapper.Map<CustomerOrder>(customerOrderDto);

@@ -7,10 +7,10 @@ public interface ICustomerOrderService
     {
     Task<List<CustomerOrderDto>> GetAll();
     
-    Task Add(CustomerOrderDto customerOrderDto);
+    Task Add(CreateCustomerOrderDto customerOrderDto);
     void Delete(CustomerOrderDto customerOrderDto);
-    void Update(CustomerOrderDto customerOrderDto, Guid id);
+    void Update(UpdateCustomerOrderDto customerOrderDto, Guid id);
     Task<List<CustomerOrderDto>> Get(Expression<Func<CustomerOrderDto, bool>> filter);
-    Task<int> TotalCount();
+   
 }
 

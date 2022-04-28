@@ -16,29 +16,20 @@ namespace OrderManagement.Api.Controllers
             _accountService = accountService;
         }
 
-        [HttpGet("Login")]
 
-        [AllowAnonymous]
-        public IActionResult Login(CustomerDto customer, string password)
+        [HttpPost("create")]
+        public async Task<ActionResult<string>> Post([FromBody] CreateCustomerDto customer)
         {
-            var loginUser = _accountService.Login(customer, password);
-            if (loginUser == null) return BadRequest();
+            return await _accountService.CreateUserAsync(customer);
+        }
 
-            return Ok(loginUser);
-        }
-        [HttpGet("Logout")]
-        [AllowAnonymous]
-        public IActionResult Logout()
+        [HttpPost("login")]
+        public async Task<ActionResult<string>> Login([FromBody] LoginUserDto customer)
         {
-            _accountService.Logout();
-            return Ok();
+            return await _accountService.LoginAsync(customer.Email, customer.Password);
         }
-        [HttpPost("Register")]
-        [AllowAnonymous]
-        public async Task<ActionResult> Register(CreateCustomerDto customer)
-        {
-            await _accountService.Register(customer);
-            return Ok();
-        }
+
+
+
     }
 }

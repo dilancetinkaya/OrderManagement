@@ -8,6 +8,7 @@ public class ProductValidator : AbstractValidator<ProductDto>
     public ProductValidator()
     {
         RuleFor(x => x.Price).NotEmpty().WithMessage("price cannot null");
+        RuleFor(x => x.Description).NotEmpty().WithMessage("price cannot null");
     }
 }
 

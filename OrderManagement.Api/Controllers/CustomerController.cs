@@ -32,13 +32,13 @@ public class CustomerController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<IActionResult> AddCustomer(CustomerDto customer)
+    public async Task<IActionResult> AddCustomer(CreateCustomerDto customer)
     {
         await _customerService.Add(customer);
         return Ok();
     }
     [HttpPut("{id}")]
-    public IActionResult UpdateCustomer(CustomerDto customer, string id)
+    public IActionResult UpdateCustomer(UpdateCustomerDto customer, string id)
     {
 
         _customerService.Update(customer, id);

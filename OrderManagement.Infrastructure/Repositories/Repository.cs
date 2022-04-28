@@ -35,10 +35,6 @@ public abstract class Repository<TEntity> : IRepository<TEntity> where TEntity :
         return await _entity.ToListAsync();
     }
 
-    public async Task<int> TotalCount()
-    {
-        return await _entity.CountAsync();
-    }
 
     public void Update(TEntity entity)
     {
