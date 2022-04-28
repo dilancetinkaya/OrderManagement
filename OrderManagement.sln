@@ -7,9 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderManagement.Core", "Ord
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderManagement.Infrastructure", "OrderManagement.Infrastructure\OrderManagement.Infrastructure.csproj", "{06AC797A-77A6-4DC1-B1CF-404AC75D2DD1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderManagement.Application", "OrdeerManagement.Application\OrderManagement.Application.csproj", "{1AF4D356-BC60-4102-8E6D-A2D357FD7AC2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderManagement.Application", "OrdeerManagement.Application\OrderManagement.Application.csproj", "{1AF4D356-BC60-4102-8E6D-A2D357FD7AC2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderManagement.Api", "OrderManagement.Api\OrderManagement.Api.csproj", "{82D65681-E60A-4AD7-B3F0-C43C226EA99D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderManagement.Api", "OrderManagement.Api\OrderManagement.Api.csproj", "{82D65681-E60A-4AD7-B3F0-C43C226EA99D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -3,11 +3,6 @@ using OrderManagement.Core.Interfaces;
 using OrderManagement.Core.Models;
 using OrderManagement.Infrastructure.Dto;
 using OrderManagement.Infrastructure.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace OrderManagement.Application.Service;
 
@@ -33,11 +28,16 @@ public class AccountService : IAccountService
         _accountRepository.Logout();
     }
 
-    public async Task Register(CreateCustomerDto customerDto)
+    public Task Register(CreateCustomerDto customerDto)
     {
-        var userDto = _mapper.Map<Customer>(customerDto);
-
-        await _accountRepository.Register(userDto, customerDto.Password);
+        throw new NotImplementedException();
     }
+
+    //public async Task Register(CreateCustomerDto customerDto)
+    //{
+    //    var userDto = _mapper.Map<Customer>(customerDto);
+
+    //    await _accountRepository.Register(userDto, customerDto.Password);
+    //}
 }
 
