@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace OrderManagement.Core.Models;
+﻿namespace OrderManagement.Core.Models;
 
 public class CustomerOrder
 {
@@ -14,8 +7,8 @@ public class CustomerOrder
     public DateTime CreatedAt { get; set; }
     public int TotalPrice { get; set; }
     public virtual ICollection<OrderItem> OrderItems { get; set; }
-    public string Name { get; set; }//gönderilecegi kisi
-    public string Address { get; set; }//gönderilen adres
+    public string Name { get; set; }//gonderilecegi kisi
+    public string Address { get; set; }//gonderilen adres
 
 }
 
