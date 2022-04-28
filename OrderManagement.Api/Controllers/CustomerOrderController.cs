@@ -25,7 +25,7 @@ public class CustomerOrderController : ControllerBase
     [HttpGet("{id}")]
     public IActionResult GetOrderById(Guid id)
     {
-        var order = _customerOrderService.Get(x=>x.Id==id);
+        var order = _customerOrderService.Get(x => x.Id == id);
         return Ok(order);
 
     }
@@ -51,32 +51,6 @@ public class CustomerOrderController : ControllerBase
         _customerOrderService.Delete(order);
         return Ok();
     }
-    public IActionResult AddProduct(ProductDto id, ProductDto price, ProductDto quantity)
-    {
-        //customer id keyi ile bir collection olcak 
-
-
-    }
-    public IActionResult AddDelete(ProductDto id)
-    {
-        //ürünü tamamenn çıkarma 10 tane varsa 10 da
-        //session
-    }
-    public IActionResult UpdatePrice(ProductDto id,ProductDto newprice)
-    {
-       //adet değiştirme
-       //varsa yeni adeti yaz yoksa bir şey yaoma
-    }
-
-    //sipariş verme kısmında ürünü ekle çıkar yaptım adet değiştirdim diğer enpointlerden,
-    //adres ve isim girişi default dan başka ad ve adresi gireceği bir endpoimt
-    //order da name adres alanaına setle
-    //adresi güncelle enpointi eğer varsa kaydı o adresi bul product,name adres geldi
-    //ürünler var addres var siparişi tamamla enpointi olucak customer id alıcaz session da tuttuğumuz
-    //product koleksiyonu bulucaz order nesnesinde order ıtemlere eşitlicek, orderimn içine tuttuğu name
-    //yaz ve siparişi yazıcaz ü
-    //hazır olanı databae yaz
-
-    
 }
+
 
