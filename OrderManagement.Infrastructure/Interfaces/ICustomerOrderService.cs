@@ -6,7 +6,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OrderManagement.Infrastructure.IServices;
+namespace OrderManagement.Infrastructure.Interfaces;
 
     public interface ICustomerOrderService
     {
@@ -14,7 +14,7 @@ namespace OrderManagement.Infrastructure.IServices;
     
     Task Add(CustomerOrderDto customerOrderDto);
     void Delete(CustomerOrderDto customerOrderDto);
-    void Update(CustomerOrderDto customerOrderDto);
+    void Update(CustomerOrderDto customerOrderDto, Guid id);
     Task<List<CustomerOrderDto>> Get(Expression<Func<CustomerOrderDto, bool>> filter);
     Task<int> TotalCount();
 }

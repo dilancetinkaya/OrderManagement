@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace OrderManagement.Infrastructure.Dto;
 
-public class CustomerDto
+public class CreateCustomerDto
 {
-    public string Id { get; set; }
     public string Name { get; set; }
     public string Address { get; set; }
 }
