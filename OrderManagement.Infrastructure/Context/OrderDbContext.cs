@@ -16,6 +16,7 @@ public class OrderDbContext : IdentityDbContext<Customer>
 
     }
     public DbSet<Customer> Customers { get; set; }
+    public DbSet<OrderItem> OrderItems { get; set; }
     public DbSet<Product> Products { get; set; }
     public DbSet<CustomerOrder> CustomerOrders { get; set; }
 }
