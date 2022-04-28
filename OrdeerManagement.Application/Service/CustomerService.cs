@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
-using OrderManagement.Core.IRepositories;
+using OrderManagement.Core.Interfaces;
 using OrderManagement.Core.Models;
 using OrderManagement.Infrastructure.Dto;
-using OrderManagement.Infrastructure.IServices;
+using OrderManagement.Infrastructure.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,9 +34,13 @@ public class CustomerService : ICustomerService
         _customerRepository.Delete(deletedCustomer);
     }
 
-    public Task<List<CustomerDto>> Get(Expression<Func<CustomerOrderDto, bool>> filter)
+  
+
+    public async Task<List<CustomerDto>> Get(Expression<Func<CustomerOrderDto, bool>> filter)
     {
-        throw new NotImplementedException();
+        var dtoFilter = _mapper.Map<Expression<Func<Customer, bool>>>(filter);
+        var result = await _customerRepository.Get(dtoFilter);
+        return _mapper.Map<List<CustomerDto>>(result);
     }
 
     public async Task<List<CustomerDto>> GetAll()
@@ -46,14 +50,15 @@ public class CustomerService : ICustomerService
         return customersDto;
     }
 
-    public Task<int> TotalCount()
+    public async Task<int> TotalCount()
     {
-        throw new NotImplementedException();
+        return await _customerRepository.TotalCount();
     }
 
-    public void Update(CustomerDto customerDto)
+    public void Update(CustomerDto customerDto, string id)
     {
         var updatedCustomer = _mapper.Map<Customer>(customerDto);
+        updatedCustomer.Id = id;
         _customerRepository.Update(updatedCustomer);
     }
 }
