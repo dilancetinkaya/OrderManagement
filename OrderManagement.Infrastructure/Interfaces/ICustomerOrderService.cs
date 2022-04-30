@@ -1,19 +1,19 @@
 ﻿using OrderManagement.Infrastructure.Dto;
+using OrderManagement.Infrastructure.Results;
 using System.Linq.Expressions;
 
 namespace OrderManagement.Infrastructure.Interfaces;
 
 public interface ICustomerOrderService
     {
-    Task<List<CustomerOrderDto>> GetAll();
-    
-    Task Add(CreateCustomerOrderDto customerOrderDto);
-    void Delete(CustomerOrderDto customerOrderDto);
-    Task UpdateOrderItem(Guid customerOrderId, UpdateOrderItemDto orderItem);
-    Task UpdateCustomerOrderAddredd(Guid customerOrderId, string address);
-    Task DeletedOrderItem(Guid customerOrderId, Guid productId);
-    Task AddOrderItem(Guid customerOrderId,CreateOrderItemDto orderItem);
-    Task<List<CustomerOrderDto>> Get(Expression<Func<CustomerOrderDto, bool>> filter);
+    Task<IDataResult<List<CustomerOrderDto>>> GetAllAsync();
+    Task<IResult> AddAsync(CreateCustomerOrderDto customerOrderDto);
+    Task<IResult> Delete(Guid id);
+    Task<IResult> UpdateOrderItemAsync(Guid customerOrderId, UpdateOrderItemDto orderItem);
+    Task<IResult> UpdateCustomerOrderAddressAsync(Guid customerOrderId, string address);
+    Task<IResult> DeletedOrderItemAsync(Guid customerOrderId, Guid productId);
+    Task<IResult> AddOrderItemAsync(Guid customerOrderId,CreateOrderItemDto orderItem);
+    Task<IDataResult<CustomerOrderDto>> GetAsync(Guid id);
    
 }
 

@@ -14,35 +14,59 @@ public class CustomerOrderController : ControllerBase
         _customerOrderService = customerOrderService;
     }
 
-    [HttpGet]
-    public IActionResult GetOrders()
+    [HttpGet("List")]
+    public async Task<IActionResult> GetOrders()
     {
-        var orderList = _customerOrderService.GetAll();
-        return Ok(orderList);
+        var result = await _customerOrderService.GetAllAsync();
+        return result.Success ? Ok(result) : NotFound(result);
 
     }
 
     [HttpGet("{id}")]
-    public IActionResult GetOrderById(Guid id)
+    public async Task<IActionResult> GetOrderById(Guid id)
     {
-        var order = _customerOrderService.Get(x => x.Id == id);
-        return Ok(order);
+        var result = await _customerOrderService.GetAsync(id);
+        return result.Success ? Ok(result) : NotFound(result);
 
     }
 
     [HttpPost]
     public async Task<IActionResult> AddOrder(CreateCustomerOrderDto order)
     {
-        await _customerOrderService.Add(order);
-        return Ok();
+        var result = await _customerOrderService.AddAsync(order);
+        return result.Success ? Ok(result) : BadRequest(result);
     }
-   
-    [HttpDelete("{id}")]
-    public IActionResult DeleteOrder(CustomerOrderDto order)
+
+    [HttpPost("OrderItem/{id}")]
+    public async Task<IActionResult> AddOrderItem(Guid id, CreateOrderItemDto orderItem)
     {
-        _customerOrderService.Delete(order);
-        return Ok();
+        var result = await _customerOrderService.AddOrderItemAsync(id, orderItem);
+        return result.Success ? Ok(result) : BadRequest(result);
+    }
+    [HttpPut("OrderItem/{id}")]
+    public async Task<IActionResult> UpdateOrderItem(Guid id, UpdateOrderItemDto orderItem)
+    {
+        var result = await _customerOrderService.UpdateOrderItemAsync(id, orderItem);
+        return result.Success ? Ok(result) : BadRequest(result);
+    }
+    [HttpPut("Address/{id}")]
+    public async Task<IActionResult> UpdateCustomerOrderAddress(Guid id, string address)
+    {
+        var result = await _customerOrderService.UpdateCustomerOrderAddressAsync(id, address);
+        return result.Success ? Ok(result) : BadRequest(result);
+    }
+    [HttpDelete("OrderItem/{id}")]
+    public async Task<IActionResult> DeleteOrderItem(Guid id, Guid productId)
+    {
+        var result = await _customerOrderService.DeletedOrderItemAsync(id, productId);
+        return result.Success ? Ok(result) : BadRequest(result);
+    }
+
+
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> DeleteOrder(Guid id)
+    {
+        var result = await _customerOrderService.Delete(id);
+        return result.Success ? Ok(result) : BadRequest(result);
     }
 }
-
-
