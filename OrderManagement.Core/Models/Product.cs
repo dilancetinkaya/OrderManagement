@@ -1,4 +1,6 @@
-﻿namespace OrderManagement.Core.Models;
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace OrderManagement.Core.Models;
 
 public class Product
 {

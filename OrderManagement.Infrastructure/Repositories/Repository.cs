@@ -14,15 +14,19 @@ public abstract class Repository<TEntity> : IRepository<TEntity> where TEntity :
         _entity = _context.Set<TEntity>();
     }
 
-    public async Task Add(TEntity entity)
+    public async Task<bool> AddAsync(TEntity entity)
     {
         await _entity.AddAsync(entity);
+        var result = _context.SaveChanges();
+        return result > 0;
     }
 
-    public void Delete(TEntity entity)
+    public bool Delete(TEntity entity)
     {
-
         _entity.Remove(entity);
+        var result = _context.SaveChanges();
+        return result > 0;
+
     }
 
     public async Task<List<TEntity>> GetManyAsync(Expression<Func<TEntity, bool>> filter)
@@ -30,15 +34,17 @@ public abstract class Repository<TEntity> : IRepository<TEntity> where TEntity :
         return await _entity.Where(filter).ToListAsync();
     }
 
-    public async Task<List<TEntity>> GetAll()
+    public async Task<List<TEntity>> GetAllAsync()
     {
         return await _entity.ToListAsync();
     }
 
 
-    public void Update(TEntity entity)
+    public bool Update(TEntity entity)
     {
         _entity.Update(entity);
+        var result = _context.SaveChanges();
+        return result > 0;
 
     }
 

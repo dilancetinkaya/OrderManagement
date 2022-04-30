@@ -12,8 +12,8 @@ using OrderManagement.Infrastructure.Context;
 namespace OrderManagement.Infrastructure.Migrations
 {
     [DbContext(typeof(OrderDbContext))]
-    [Migration("20220428161229_OrderManagement")]
-    partial class OrderManagement
+    [Migration("20220429232758_OrderAPI")]
+    partial class OrderAPI
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -250,8 +250,8 @@ namespace OrderManagement.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("TotalPrice")
-                        .HasColumnType("int");
+                    b.Property<double>("TotalPrice")
+                        .HasColumnType("float");
 
                     b.HasKey("Id");
 

@@ -5,11 +5,11 @@ namespace OrderManagement.Infrastructure.Interfaces;
 
 public interface IProductService
     {
-    Task<List<ProductDto>> GetAll();
-    Task Add(CreateProductDto productDto);
-    void Delete(ProductDto productDto);
+    Task<List<ProductDto>> GetAllAsync();
+    Task AddAsync(CreateProductDto productDto);
+    Task Delete(Guid id);
     void Update(UpdateProductDto productDto,Guid id);
-    Task<List<ProductDto>> Get(Expression<Func<ProductDto, bool>> filter);
+    Task<ProductDto> GetAsync(Guid id);
 
 
 

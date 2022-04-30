@@ -8,7 +8,7 @@ public class OrderDbContext : IdentityDbContext<Customer>
 
     public OrderDbContext(DbContextOptions<OrderDbContext> options) : base(options)
     {
-
+        
     }
     public DbSet<Customer> Customers { get; set; }
     public DbSet<OrderItem> OrderItems { get; set; }

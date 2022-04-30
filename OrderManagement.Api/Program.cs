@@ -25,7 +25,7 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddAutoMapper(typeof(OrderManagement.Application.Map.MapProfile));
 builder.Services.AddDbContext<OrderDbContext>(
-options => options.UseSqlServer("name=ConnectionStrings:DefaultConnection", b => b.MigrationsAssembly(typeof(OrderDbContext).Assembly.FullName)));
+options => options.UseLazyLoadingProxies().UseSqlServer("name=ConnectionStrings:DefaultConnection", b => b.MigrationsAssembly(typeof(OrderDbContext).Assembly.FullName)));
 builder.Services.AddIdentity<Customer, IdentityRole>()
   .AddEntityFrameworkStores<OrderDbContext>()
   .AddDefaultTokenProviders();
@@ -60,7 +60,6 @@ builder.Services
         };
     });
 
-builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
 builder.Services.AddScoped<ICustomerOrderRepository, CustomerOrderRepository>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 

@@ -15,18 +15,18 @@ public class CustomerController : ControllerBase
         _customerService = customerService;
     }
 
-    [HttpGet]
-    public IActionResult GetCustomers()
+    [HttpGet("List")]
+    public async Task<IActionResult> GetCustomers()
     {
-        var customerList = _customerService.GetAll();
+        var customerList = await _customerService.GetAllAsync();
         return Ok(customerList);
 
     }
 
     [HttpGet("{id}")]
-    public IActionResult GetCustomerById(Guid id)
+    public async Task<IActionResult> GetCustomerById(string id)
     {
-        var customer = _customerService.Get(x => x.Id == id);
+        var customer = await _customerService.GetAsync(id);
         return Ok(customer);
 
     }
@@ -34,22 +34,21 @@ public class CustomerController : ControllerBase
     [HttpPost]
     public async Task<IActionResult> AddCustomer(CreateCustomerDto customer)
     {
-        await _customerService.Add(customer);
+        await _customerService.AddAsync(customer);
         return Ok();
     }
     [HttpPut("{id}")]
-    public IActionResult UpdateCustomer(UpdateCustomerDto customer, string id)
+    public async Task<IActionResult> UpdateCustomer(UpdateCustomerDto customer, string id)
     {
-
-        _customerService.Update(customer, id);
+        await _customerService.UpdateAsync(customer, id);
         return Ok();
 
 
     }
     [HttpDelete("{id}")]
-    public IActionResult DeleteCustomer(CustomerDto customer)
+    public async Task<IActionResult> DeleteCustomer(string id)
     {
-        _customerService.Delete(customer);
+        await _customerService.Delete(id);
         return Ok();
     }
 }

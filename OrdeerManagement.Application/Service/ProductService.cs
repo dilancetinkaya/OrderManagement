@@ -3,7 +3,6 @@ using OrderManagement.Core.Interfaces;
 using OrderManagement.Core.Models;
 using OrderManagement.Infrastructure.Dto;
 using OrderManagement.Infrastructure.Interfaces;
-using System.Linq.Expressions;
 
 namespace OrderManagement.Application.Service;
 
@@ -16,28 +15,27 @@ public class ProductService : IProductService
         _productRepository = productRepository;
         _mapper = mapper;
     }
-    public async Task Add(CreateProductDto productDto)
+    public async Task AddAsync(CreateProductDto productDto)
     {
         var product = _mapper.Map<Product>(productDto);
-        await _productRepository.Add(product);
+        await _productRepository.AddAsync(product);
     }
 
-    public void Delete(ProductDto productDto)
+    public async Task Delete(Guid id)
     {
-        var deletedProduct = _mapper.Map<Product>(productDto);
-         _productRepository.Delete(deletedProduct);
+        var product = await _productRepository.GetAsync(x=>x.Id == id);
+          _productRepository.Delete(product);
     }
 
-    public async Task<List<ProductDto>> Get(Expression<Func<ProductDto, bool>> filter)
+    public async Task<ProductDto> GetAsync(Guid id)
     {
-        var dtoFilter = _mapper.Map<Expression<Func<Product, bool>>>(filter);
-        var result = await _productRepository.GetManyAsync(dtoFilter);
-        return _mapper.Map<List<ProductDto>>(result);
+        var result = await _productRepository.GetAsync(x=>x.Id==id);
+        return _mapper.Map<ProductDto>(result);
     }
 
-    public async Task<List<ProductDto>> GetAll()
+    public async Task<List<ProductDto>> GetAllAsync()
     {
-        var products = _productRepository.GetAll();
+        var products =await _productRepository.GetAllAsync();
         var productsDto = _mapper.Map<List<ProductDto>>(products);
         return productsDto;
     }

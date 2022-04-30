@@ -14,18 +14,18 @@ public class ProductController : ControllerBase
         _productService = productService;
     }
 
-    [HttpGet]
-    public IActionResult GetProducts()
+    [HttpGet("List")]
+    public async Task<IActionResult> GetProducts()
     {
-        var productList = _productService.GetAll();
+        var productList = await _productService.GetAllAsync();
         return Ok(productList);
 
     }
 
     [HttpGet("{id}")]
-    public IActionResult GetProductById(Guid id)
+    public async Task<IActionResult> GetProductById(Guid id)
     {
-        var product = _productService.Get(x => x.Id == id);
+        var product = await _productService.GetAsync(id);
         return Ok(product);
 
     }
@@ -33,7 +33,7 @@ public class ProductController : ControllerBase
     [HttpPost]
     public async Task<IActionResult> AddProduct(CreateProductDto product)
     {
-        await _productService.Add(product);
+        await _productService.AddAsync(product);
         return Ok();
     }
     [HttpPut("{id}")]
@@ -46,10 +46,10 @@ public class ProductController : ControllerBase
 
     }
     [HttpDelete("{id}")]
-    public IActionResult DeleteProduct(ProductDto product)
+    public async Task<IActionResult> DeleteProduct(Guid id)
     {
-        _productService.Delete(product);
-        return Ok();
+       await _productService.Delete(id);
+       return Ok();
     }
 }
 

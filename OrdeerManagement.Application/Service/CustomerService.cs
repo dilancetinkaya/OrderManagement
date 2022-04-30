@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Identity;
 using OrderManagement.Core.Interfaces;
 using OrderManagement.Core.Models;
 using OrderManagement.Infrastructure.Dto;
@@ -10,48 +11,49 @@ namespace OrderManagement.Application.Service;
 public class CustomerService : ICustomerService
 {
 
-    private readonly ICustomerRepository _customerRepository;
+   
+    private readonly UserManager<Customer> _userManager;
     private readonly IMapper _mapper;
-    public CustomerService(ICustomerRepository customerRepository, IMapper mapper)
+    public CustomerService( IMapper mapper, UserManager<Customer> userManager)
     {
-        _customerRepository = customerRepository;
         _mapper = mapper;
+        _userManager = userManager;
     }
-    public async Task Add(CreateCustomerDto customerDto)
+    public async Task AddAsync(CreateCustomerDto customerDto)
     {
         var customer = _mapper.Map<Customer>(customerDto);
-        await _customerRepository.Add(customer);
+        await _userManager.CreateAsync(customer);
+        await _userManager.CreateAsync(customer);
     }
 
-    public void Delete(CustomerDto customerDto)
+    public async Task Delete(string id)
     {
-        var deletedCustomer = _mapper.Map<Customer>(customerDto);
-        _customerRepository.Delete(deletedCustomer);
+        var customer = await _userManager.FindByIdAsync(id);
+        await _userManager.DeleteAsync(customer);
     }
 
-  
-
-    public async Task<List<CustomerDto>> Get(Expression<Func<CustomerOrderDto, bool>> filter)
+    public async Task<List<CustomerDto>> GetAllAsync()
     {
-        var dtoFilter = _mapper.Map<Expression<Func<Customer, bool>>>(filter);
-        var result = await _customerRepository.GetManyAsync(dtoFilter);
-        return _mapper.Map<List<CustomerDto>>(result);
-    }
-
-    public async Task<List<CustomerDto>> GetAll()
-    {
-        var customers = _customerRepository.GetAll();
+        var customers = _userManager.Users;
         var customersDto = _mapper.Map<List<CustomerDto>>(customers);
         return customersDto;
     }
 
 
 
-    public void Update(UpdateCustomerDto customerDto, string id)
+    public async Task UpdateAsync(UpdateCustomerDto customerDto, string id)
     {
-        var updatedCustomer = _mapper.Map<Customer>(customerDto);
-        updatedCustomer.Id = id;
-        _customerRepository.Update(updatedCustomer);
+        var customer = await _userManager.FindByIdAsync(id);
+        customer.Name = customerDto.Name;
+        customer.Address = customerDto.Address;
+        await _userManager.UpdateAsync(customer);
+    }
+
+    public async Task<CustomerDto> GetAsync(string id)
+    {
+        var customer = await _userManager.FindByIdAsync(id);
+        return _mapper.Map<CustomerDto>(customer);
+
     }
 }
 

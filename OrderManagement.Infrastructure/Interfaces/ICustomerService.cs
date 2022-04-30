@@ -5,11 +5,11 @@ namespace OrderManagement.Infrastructure.Interfaces;
 
 public interface ICustomerService
 {
-    Task<List<CustomerDto>> GetAll();
-    Task Add(CreateCustomerDto customerDto);
-    void Delete(CustomerDto customerDto);
-    void Update(UpdateCustomerDto customerDto,string id);
-    Task<List<CustomerDto>> Get(Expression<Func<CustomerOrderDto, bool>> filter);
+    Task<List<CustomerDto>> GetAllAsync();
+    Task AddAsync(CreateCustomerDto customerDto);
+    Task Delete(string id);
+    Task UpdateAsync(UpdateCustomerDto customerDto,string id);
+    Task<CustomerDto> GetAsync(string id);
    
 }
 
